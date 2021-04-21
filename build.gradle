@@ -1,0 +1,145 @@
+apply plugin: 'jacoco'
+apply plugin: 'java'
+apply plugin: 'pmd'
+apply plugin: 'checkstyle'
+apply plugin: 'findbugs'
+
+def junitVersion = '4.12'
+def pmdVersion = '6.18.0'
+def checkstyleVersion = '7.8.1'
+def findbugsVersion = '3.0.1'
+def jacocoVersion = '0.8.2'
+def fileConfigurationPmd = './pmdConfiguration.xml'
+def fileConfigurationCheckstyle = './checkStyleConfiguration.xml'
+def fileConfigurationFindBugs = './findBugsConfiguration.xml'
+def nameResultDirectory = 'buildReports'
+def reportFileExtension = 'report'
+def excludeClasses = ['**/Demo**']
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: junitVersion
+}
+
+task buildProject(dependsOn: ['allProjectClear', 'build', 'jacocoTestReport'])
+
+task allProjectClear {
+    delete file ('build')
+    mkdir nameResultDirectory
+    file(nameResultDirectory).listFiles().each { file ->
+        def nameFile = file.name
+        if (!reportFileExtension.equals(nameFile.substring(nameFile.indexOf(".") + 1))) {
+            delete file.getAbsolutePath()
+        }
+    }
+}
+
+pmd {
+    toolVersion = pmdVersion
+    ignoreFailures = true
+    sourceSets = [sourceSets.main]
+    ruleSetFiles file(fileConfigurationPmd)
+    consoleOutput = false
+}
+
+tasks.withType(Pmd) {
+    reports {
+        xml.enabled = true
+        xml.destination file("${nameResultDirectory}/pmdReport.xml")
+        html.enabled = false
+    }
+}
+
+checkstyle {
+    toolVersion checkstyleVersion
+    ignoreFailures = true
+    sourceSets = [sourceSets.main]
+    configFile file(fileConfigurationCheckstyle)
+    showViolations = false
+}
+
+tasks.withType(Checkstyle) {
+    reports {
+        xml.enabled = true
+        xml.destination file("${nameResultDirectory}/checkstyleReport.xml")
+        html.enabled = false
+    }
+}
+
+findbugs {
+    toolVersion = findbugsVersion
+    ignoreFailures = true
+    sourceSets = [sourceSets.main]
+    excludeFilter = file(fileConfigurationFindBugs)
+}
+
+tasks.withType(FindBugs) {
+    reports {
+        xml.enabled = true
+        xml.destination file("${nameResultDirectory}/findbugsReport.xml")
+    }
+}
+
+jacoco {
+    toolVersion = jacocoVersion
+}
+
+jacocoTestReport {
+    test {
+  
+    }
+    reports {
+        xml.enabled = true
+        xml.destination file("${nameResultDirectory}/jacocoTestReport.xml")
+        csv.enabled = false
+        html.enabled = false
+    }
+    afterEvaluate {
+        classDirectories = files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: excludeClasses)
+        })  //this task is excluding the classes for coverage
+    }
+}
+
+ext.testsResults = [] // Container for tests summaries
+
+allprojects { project ->
+    tasks.withType(Test) { testTask ->
+        testTask.testLogging { logging ->
+            events "PASSED", "FAILED", "SKIPPED", "STANDARD_ERROR", "STANDARD_OUT"
+            exceptionFormat 'full'
+            showExceptions true
+            showCauses true
+            showStackTraces true
+        }
+
+        ignoreFailures = true
+
+        afterSuite { desc, result ->
+            if (desc.parent) return
+            String summary = "${testTask.project.name}:${testTask.name} results: ${result.resultType} " +
+                    "(" +
+                    "${result.testCount} tests, " +
+                    "${result.successfulTestCount} successes, " +
+                    "${result.failedTestCount} failures, " +
+                    "${result.skippedTestCount} skipped" +
+                    ")"
+            rootProject.testsResults += summary
+        }
+    }
+}
+
+gradle.buildFinished {
+    def allResults = rootProject.ext.testsResults
+    if (!allResults.isEmpty()) {
+        allResults.each{ resultTest ->
+            println resultTest
+        }
+    }
+}
