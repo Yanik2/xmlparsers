@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://flowers.com/flowers"
+        xmlns:tns="http://flowers.com/flowers"
+        elementFormDefault="qualified">
+    <element name="flowers">
+        <complexType>
+            <sequence>
+                <element name="flower" type="tns:Flower" maxOccurs="unbounded"/>
+            </sequence>
+        </complexType>
+    </element>
+
+    <complexType name="Flower">
+        <sequence>
+            <element name="name" type="string"/>
+            <element name="soil" type="tns:Soil"/>
+            <element name="origin" type="string"/>
+            <element name="visualParams" type="tns:VisualParams"/>
+            <element name="growingTips" type="tns:GrowingTips"/>
+            <element name="multiplying" type="tns:Multiplying"/>
+        </sequence>
+    </complexType>
+
+    <complexType name="VisualParams">
+        <sequence>
+            <element name="colorOfStem" type="string"/>
+            <element name="colorOfLeaves" type="string"/>
+            <element name="averageSize" type="positiveInteger"/>
+        </sequence>
+    </complexType>
+
+    <complexType name="GrowingTips">
+        <sequence>
+            <element name="temperature" type="tns:Temperature"/>
+            <element name="light" type="tns:Light"/>
+            <element name="watering" type="integer" default="0"/>
+        </sequence>
+    </complexType>
+
+    <complexType name="Soil">
+        <attribute name="typeOfSoil">
+            <simpleType>
+                <restriction base="string">
+                    <enumeration value="podzolic"/>
+                    <enumeration value="ground"/>
+                    <enumeration value="sod-podzolic"/>
+                </restriction>
+            </simpleType>
+        </attribute>
+    </complexType>
+
+    <complexType name="Multiplying">
+        <attribute name="method">
+            <simpleType>
+                <restriction base="string">
+                    <enumeration value="seed"/>
+                    <enumeration value="stalk"/>
+                    <enumeration value="leaves"/>
+                </restriction>
+            </simpleType>
+        </attribute>
+    </complexType>
+
+    <complexType name="Light">
+        <attribute name="condition">
+            <simpleType>
+                <restriction base="string">
+                    <enumeration value="true"/>
+                    <enumeration value="false"/>
+                </restriction>
+            </simpleType>
+        </attribute>
+    </complexType>
+
+    <simpleType name="Temperature">
+        <restriction base="integer">
+            <maxInclusive value="50"/>
+            <minExclusive value="0"/>
+        </restriction>
+    </simpleType>
+</schema>

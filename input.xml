@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<flowers xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://flowers.com/flowers"
+         xsi:schemaLocation="http://flowers.com/flowers input.xsd">
+    <flower>
+        <name>Rose</name>
+        <soil typeOfSoil="podzolic"></soil>
+        <origin>China</origin>
+        <visualParams>
+            <colorOfStem>Green</colorOfStem>
+            <colorOfLeaves>Green</colorOfLeaves>
+            <averageSize>10</averageSize>
+        </visualParams>
+        <growingTips>
+            <temperature>26</temperature>
+            <light condition="true"></light>
+            <watering>1</watering>
+        </growingTips>
+        <multiplying method="seed"></multiplying>
+    </flower>
+
+    <flower>
+        <name>Tulip</name>
+        <soil typeOfSoil="ground"></soil>
+        <origin>Afganistan</origin>
+        <visualParams>
+            <colorOfStem>Green</colorOfStem>
+            <colorOfLeaves>Yellow</colorOfLeaves>
+            <averageSize>5</averageSize>
+        </visualParams>
+        <growingTips>
+            <temperature>20</temperature>
+            <light condition="true"></light>
+            <watering>2</watering>
+        </growingTips>
+        <multiplying method="leaves"></multiplying>
+    </flower>
+
+    <flower>
+        <name>Magnolia</name>
+        <soil typeOfSoil="sod-podzolic"></soil>
+        <origin>Japan</origin>
+        <visualParams>
+            <colorOfStem>Red</colorOfStem>
+            <colorOfLeaves>While</colorOfLeaves>
+            <averageSize>7</averageSize>
+        </visualParams>
+        <growingTips>
+            <temperature>30</temperature>
+            <light condition="false"></light>
+            <watering>3</watering>
+        </growingTips>
+        <multiplying method="stalk"></multiplying>
+    </flower>
+
+    <flower>
+        <name>Violet</name>
+        <soil typeOfSoil="ground"></soil>
+        <origin>Ukraine</origin>
+        <visualParams>
+            <colorOfStem>Green</colorOfStem>
+            <colorOfLeaves>Purple</colorOfLeaves>
+            <averageSize>3</averageSize>
+        </visualParams>
+        <growingTips>
+            <temperature>20</temperature>
+            <light condition="false"></light>
+            <watering>6</watering>
+        </growingTips>
+        <multiplying method="leaves"></multiplying>
+    </flower>
+
+    <flower>
+        <name>Cactus</name>
+        <soil typeOfSoil="podzolic"></soil>
+        <origin>Mexico</origin>
+        <visualParams>
+            <colorOfStem>Green</colorOfStem>
+            <colorOfLeaves>Green</colorOfLeaves>
+            <averageSize>20</averageSize>
+        </visualParams>
+        <growingTips>
+            <temperature>40</temperature>
+            <light condition="false"></light>
+            <watering>0</watering>
+        </growingTips>
+        <multiplying method="stalk"></multiplying>
+    </flower>
+</flowers>
