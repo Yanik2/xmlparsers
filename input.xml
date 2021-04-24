@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<flowers xmlns:ns="http://www.w3.org/2001/XMLSchema-instance"
-         xmlns="http://flowers.com/flowers"
-            ns:schemaLocation="http://flowers.com/flowers input.xsd">
+<flowers
+         xmlns:ns="http://www.w3.org/2001/XMLSchema-instance"
+
+        ns:noNameSpaceSchemaLocation="input.xsd">
     <flower>
         <name>Rose</name>
         <soil typeOfSoil="podzolic"></soil>
