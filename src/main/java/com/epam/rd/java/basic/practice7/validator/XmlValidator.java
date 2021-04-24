@@ -40,7 +40,7 @@ public class XmlValidator {
             Schema schema = factory.newSchema(schemaLocation);
             Validator validator = schema.newValidator();
             validator.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
-            validator.setProperty("javax.xml.stream.isSupportingExternalEntities", false);
+            validator.setFeature("javax.xml.stream.isSupportingExternalEntities", false);
             Source source = new StreamSource(filename);
             validator.setErrorHandler(new FlowerErrorHandler());
             validator.validate(source);
