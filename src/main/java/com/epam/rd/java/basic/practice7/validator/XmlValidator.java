@@ -32,6 +32,7 @@ public class XmlValidator {
            Validator validator = schema.newValidator();
            Source source = new StreamSource(filename);
            validator.setErrorHandler(new FlowerErrorHandler());
+           validator.setProperty(XMLConstants.FEATURE_SECURE_PROCESSING, true);
            validator.validate(source);
         } catch(SAXException | IOException e) {
             LOGGER.severe(e.getMessage());
