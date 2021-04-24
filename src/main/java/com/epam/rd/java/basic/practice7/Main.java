@@ -10,20 +10,20 @@ import com.epam.rd.java.basic.practice7.validator.XmlValidator;
 public final class Main {
 
     public static void main(final String[] args) {
-//        FlowerDomParser domParser = new FlowerDomParser();
-//        domParser.parseFlowers("input.xml");
-//        System.out.println(domParser.getFlowers());
-//        FlowerSaxParser saxParser = new FlowerSaxParser();
-//        saxParser.parseFlowers("input.xml");
-//        System.out.println(saxParser.getFlowers());
+        FlowerDomParser domParser = new FlowerDomParser();
+        domParser.parseFlowers(args[0]);
+
+        FlowerSaxParser saxParser = new FlowerSaxParser();
+        saxParser.parseFlowers(args[0]);
+
         FlowerStaxParser p = new FlowerStaxParser();
-        p.parseFlowers("input.xml");
-//        System.out.println(p.getFlowers());
-//        FlowerDomXmlBuilder builder = new FlowerDomXmlBuilder(p.getFlowers());
-//        builder.buildXml();
-//        XmlValidator.isValid("output.xml", "input.xsd");
+        p.parseFlowers(args[0]);
+
+        FlowerDomXmlBuilder builder = new FlowerDomXmlBuilder(p.getFlowers());
+        builder.buildXml();
+
         FlowerSaxBuilder b = new FlowerSaxBuilder(p.getFlowers());
         b.buildXml();
-        XmlValidator.isValid("input.xml", "input.xsd");
+
     }
 }
