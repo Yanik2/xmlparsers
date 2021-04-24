@@ -6,6 +6,7 @@ import com.epam.rd.java.basic.practice7.item.Flower;
 import javax.xml.stream.XMLOutputFactory;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
@@ -25,7 +26,7 @@ public class FlowerSaxBuilder extends AbstractXmlBuilder {
     @Override
     public void buildXml() {
         try {
-            XMLStreamWriter writer = factory.createXMLStreamWriter(new FileWriter("output.sax.xml"));
+            XMLStreamWriter writer = factory.createXMLStreamWriter(new FileOutputStream("output.sax.xml"), "cp1251");
             writer.writeStartDocument("UTF-8", "1.0");
             writer.writeStartElement("flowers");
             for(Flower f : flowers) {
