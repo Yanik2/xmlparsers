@@ -3,6 +3,7 @@ package com.epam.rd.java.basic.practice7.saxbuilder;
 import com.epam.rd.java.basic.practice7.builders.saxbuilder.FlowerSaxBuilder;
 import com.epam.rd.java.basic.practice7.container.Flowers;
 import com.epam.rd.java.basic.practice7.parsers.saxparser.FlowerSaxParser;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -36,5 +37,14 @@ public class FlowerSaxBuilderTest {
         p.parseFlowers("input.xml");
         FlowerSaxBuilder b = new FlowerSaxBuilder(p.getFlowers());
         Assert.assertTrue(Files.deleteIfExists(Paths.get("output.sax.xml")));
+    }
+
+    @After
+    public void deleteFile() {
+        try {
+            Files.deleteIfExists(Paths.get("output.sax.xml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

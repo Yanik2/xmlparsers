@@ -30,17 +30,9 @@ public class XmlValidator {
         String language = XMLConstants.W3C_XML_SCHEMA_NS_URI;
         SchemaFactory factory = SchemaFactory.newInstance(language);
         try {
-            factory.setProperty(XMLConstants.ACCESS_EXTERNAL_DTD, "");
-            factory.setProperty(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
-            factory.setProperty(XMLConstants.ACCESS_EXTERNAL_STYLESHEET, "");
             File schemaLocation = new File(schemaName);
-
-            factory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
-            factory.setProperty(XMLConstants.FEATURE_SECURE_PROCESSING, true);
             Schema schema = factory.newSchema(schemaLocation);
             Validator validator = schema.newValidator();
-            validator.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
-            validator.setFeature("javax.xml.stream.isSupportingExternalEntities", false);
             Source source = new StreamSource(filename);
             validator.setErrorHandler(new FlowerErrorHandler());
             validator.validate(source);

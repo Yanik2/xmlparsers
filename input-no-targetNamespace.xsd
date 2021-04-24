@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns:schema xmlns:ns="http://www.w3.org/2001/XMLSchema"
+
+           elementFormDefault="qualified">
+    <ns:element name="flowers">
+        <ns:complexType>
+            <ns:sequence>
+                <ns:element name="flower" maxOccurs="unbounded">
+                    <ns:complexType>
+                        <ns:sequence>
+                            <ns:element name="name" type="ns:string"/>
+                            <ns:element name="soil">
+                                <ns:simpleType>
+                                    <ns:restriction base="ns:string">
+                                        <ns:enumeration value="podzolic"/>
+                                        <ns:enumeration value="ground"/>
+                                        <ns:enumeration value="sod-podzolic"/>
+                                    </ns:restriction>
+                                </ns:simpleType>
+                            </ns:element>
+                            <ns:element name="origin" type="ns:string"/>
+                            <ns:element name="visualParams">
+                                <ns:complexType>
+                                    <ns:sequence>
+                                        <ns:element name="colorOfStem" type="ns:string"/>
+                                        <ns:element name="colorOfLeaves" type="ns:string"/>
+                                        <ns:element name="averageSize" type="ns:positiveInteger"/>
+                                    </ns:sequence>
+                                </ns:complexType>
+                            </ns:element>
+                            <ns:element name="growingTips">
+                                <ns:complexType>
+                                    <ns:sequence>
+                                        <ns:element name="temperature">
+                                            <ns:simpleType>
+                                                <ns:restriction base="ns:integer">
+                                                    <ns:maxInclusive value="50"/>
+                                                    <ns:minExclusive value="0"/>
+                                                </ns:restriction>
+                                            </ns:simpleType>
+                                        </ns:element>
+                                        <ns:element name="light">
+                                            <ns:simpleType>
+                                                <ns:restriction base="ns:string">
+                                                    <ns:enumeration value="true"/>
+                                                    <ns:enumeration value="false"/>
+                                                </ns:restriction>
+                                            </ns:simpleType>
+                                        </ns:element>
+                                        <ns:element name="watering" type="ns:integer" default="0"/>
+                                    </ns:sequence>
+                                </ns:complexType>
+                            </ns:element>
+                            <ns:element name="multiplying">
+                                <ns:simpleType>
+                                    <ns:restriction base="ns:string">
+                                        <ns:enumeration value="seed"/>
+                                        <ns:enumeration value="stalk"/>
+                                        <ns:enumeration value="leaves"/>
+                                    </ns:restriction>
+                                </ns:simpleType>
+                            </ns:element>
+                        </ns:sequence>
+                    </ns:complexType>
+                </ns:element>
+            </ns:sequence>
+        </ns:complexType>
+    </ns:element>
+</ns:schema>

@@ -1,10 +1,9 @@
 package com.epam.rd.java.basic.practice7.staxbuilder;
 
-import com.epam.rd.java.basic.practice7.builders.saxbuilder.FlowerSaxBuilder;
 import com.epam.rd.java.basic.practice7.builders.staxbuilder.FlowerStaxBuilder;
 import com.epam.rd.java.basic.practice7.container.Flowers;
-import com.epam.rd.java.basic.practice7.parsers.saxparser.FlowerSaxParser;
 import com.epam.rd.java.basic.practice7.parsers.staxparser.FlowerStaxParser;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -25,5 +24,14 @@ public class FlowerStaxBuilderTest {
         p.parseFlowers("input.xml");
         FlowerStaxBuilder b = new FlowerStaxBuilder(p.getFlowers());
         Assert.assertTrue(Files.deleteIfExists(Paths.get("output.stax.xml")));
+    }
+
+    @After
+    public void deleteFile() {
+        try {
+            Files.deleteIfExists(Paths.get("output.stax.xml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
