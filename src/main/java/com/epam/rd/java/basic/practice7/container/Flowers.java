@@ -17,6 +17,10 @@ public class Flowers implements Iterable<Flower> {
         this.flowers = flowers;
     }
 
+    public List<Flower> getFlowers() {
+        return flowers;
+    }
+
     public void add(Flower f) {
         flowers.add(f);
     }
