@@ -3,6 +3,7 @@ package com.epam.rd.java.basic.practice7.parsers.staxparser;
 import com.epam.rd.java.basic.practice7.item.Flower;
 import com.epam.rd.java.basic.practice7.parsers.AbstractFlowerParser;
 
+import javax.xml.XMLConstants;
 import javax.xml.stream.XMLEventReader;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
@@ -11,6 +12,7 @@ import javax.xml.stream.events.StartElement;
 import javax.xml.stream.events.XMLEvent;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.logging.Logger;
 
 /**
  * This class extends AbstractFlowerParser, and parses xml file
@@ -19,12 +21,15 @@ import java.io.FileNotFoundException;
  * @version 0.1
  */
 public class FlowerStaxParser extends AbstractFlowerParser {
+    private static final Logger LOGGER = Logger.getLogger(FlowerStaxParser.class.getName());
     private final XMLInputFactory factory;
     private XMLEventReader reader;
     private Flower current;
 
     public FlowerStaxParser() {
         factory = XMLInputFactory.newInstance();
+        factory.setProperty(XMLConstants.ACCESS_EXTERNAL_DTD, "");
+        factory.setProperty(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
     }
 
     @Override
@@ -48,7 +53,7 @@ public class FlowerStaxParser extends AbstractFlowerParser {
                 }
             }
         } catch (XMLStreamException | FileNotFoundException e) {
-            e.printStackTrace();
+           LOGGER.severe(e.getMessage());
         }
     }
 

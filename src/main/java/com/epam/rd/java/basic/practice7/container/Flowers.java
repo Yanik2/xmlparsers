@@ -7,34 +7,34 @@ import java.util.Iterator;
 import java.util.List;
 
 public class Flowers implements Iterable<Flower> {
-    private List<Flower> flowers;
+    private final List<Flower> storage;
 
     public Flowers() {
-        flowers = new ArrayList<>();
+        storage = new ArrayList<>();
     }
 
     public Flowers(List<Flower> flowers) {
-        this.flowers = flowers;
+        this.storage = flowers;
     }
 
     public List<Flower> getFlowers() {
-        return flowers;
+        return storage;
     }
 
     public void add(Flower f) {
-        flowers.add(f);
+        storage.add(f);
     }
 
     public Flower get(int i) {
-        return flowers.get(i);
+        return storage.get(i);
     }
 
     public Iterator<Flower> iterator() {
-        return flowers.iterator();
+        return storage.iterator();
     }
 
     @Override
     public String toString() {
-        return flowers.toString();
+        return storage.toString();
     }
 }

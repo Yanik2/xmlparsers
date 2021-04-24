@@ -4,6 +4,7 @@ import com.epam.rd.java.basic.practice7.parsers.AbstractFlowerParser;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 
+import javax.xml.XMLConstants;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
@@ -25,6 +26,8 @@ public class FlowerSaxParser extends AbstractFlowerParser {
         handler = new FlowerHandler();
         try {
             SAXParser parser = factory.newSAXParser();
+            parser.setProperty(XMLConstants.ACCESS_EXTERNAL_DTD, "");
+            parser.setProperty(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
             reader = parser.getXMLReader();
         } catch(SAXException | ParserConfigurationException e) {
             logger.severe(e.getMessage());

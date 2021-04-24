@@ -6,6 +6,7 @@ import com.epam.rd.java.basic.practice7.item.Flower;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -31,6 +32,8 @@ public class FlowerDomXmlBuilder extends AbstractXmlBuilder {
     @Override
     public void buildXml() {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        factory.setAttribute(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
+        factory.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, "");
         try {
             DocumentBuilder builder = factory.newDocumentBuilder();
             Document doc = builder.newDocument();
@@ -87,6 +90,8 @@ public class FlowerDomXmlBuilder extends AbstractXmlBuilder {
 
     private void write(Document doc) throws TransformerException, IOException {
         TransformerFactory factory = TransformerFactory.newInstance();
+        factory.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, "");
+        factory.setAttribute(XMLConstants.ACCESS_EXTERNAL_STYLESHEET, "");
         Transformer tr = factory.newTransformer();
         DOMSource source = new DOMSource(doc);
         StreamResult result = new StreamResult(new FileOutputStream("output.dom.xml"));

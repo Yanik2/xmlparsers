@@ -21,6 +21,7 @@ import java.util.logging.Logger;
 public class XmlValidator {
     private static final Logger LOGGER = Logger.getLogger(XmlValidator.class.getName());
 
+    private XmlValidator() {}
     public static boolean isValid(String filename, String schemaName) {
         String language = XMLConstants.W3C_XML_SCHEMA_NS_URI;
         SchemaFactory factory = SchemaFactory.newInstance(language);
