@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ns:schema xmlns:ns="http://www.w3.org/2001/XMLSchema"
-
+        targetNamespace="http://flowers.com/flowers"
         elementFormDefault="qualified">
     <ns:element name="flowers">
         <ns:complexType>
