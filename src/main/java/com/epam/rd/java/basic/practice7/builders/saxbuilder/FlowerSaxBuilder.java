@@ -25,7 +25,7 @@ public class FlowerSaxBuilder extends AbstractXmlBuilder {
     @Override
     public void buildXml() {
         try {
-            XMLStreamWriter writer = factory.createXMLStreamWriter(new FileWriter("output.xml"));
+            XMLStreamWriter writer = factory.createXMLStreamWriter(new FileWriter("output.sax.xml"));
             writer.writeStartDocument("UTF-8", "1.0");
             writer.writeStartElement("flowers");
             for(Flower f : flowers) {
