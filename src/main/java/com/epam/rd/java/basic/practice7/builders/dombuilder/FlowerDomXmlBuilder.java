@@ -26,6 +26,10 @@ import java.util.logging.Logger;
 public class FlowerDomXmlBuilder extends AbstractXmlBuilder {
     private static final Logger LOGGER = Logger.getLogger(FlowerDomXmlBuilder.class.getName());
 
+    public static Logger getLOGGER() {
+        return LOGGER;
+    }
+
     public FlowerDomXmlBuilder(Flowers flowers) {
         super(flowers);
     }

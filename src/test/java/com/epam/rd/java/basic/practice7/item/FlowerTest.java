@@ -16,9 +16,8 @@ public class FlowerTest {
     }
 
     @Test
-    public void shoulReturnString() {
+    public void shouldReturnString() {
         Flower f = flowers.get(0);
-
         Assert.assertTrue(f.getName() instanceof String);
     }
 }

@@ -88,4 +88,12 @@ public class FlowerDomParser extends AbstractFlowerParser {
         Node node = el.getElementsByTagName(name).item(0);
         return node.getTextContent();
     }
+
+    public static Logger getLogger() {
+        return logger;
+    }
+
+    public DocumentBuilder getDocumentBuilder() {
+        return documentBuilder;
+    }
 }

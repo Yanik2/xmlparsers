@@ -11,4 +11,9 @@ public class FlowerDomBuilderTest {
         FlowerDomXmlBuilder b = new FlowerDomXmlBuilder(new Flowers());
         Assert.assertNotNull(b);
     }
+
+    @Test
+    public void shouldReturnLogger() {
+        Assert.assertNotNull(FlowerDomXmlBuilder.getLOGGER());
+    }
 }

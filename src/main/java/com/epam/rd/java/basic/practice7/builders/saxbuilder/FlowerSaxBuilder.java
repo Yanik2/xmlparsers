@@ -86,4 +86,12 @@ public class FlowerSaxBuilder extends AbstractXmlBuilder {
            LOGGER.severe(e.getMessage());
         }
     }
+
+    public static Logger getLOGGER() {
+        return LOGGER;
+    }
+
+    public XMLOutputFactory getFactory() {
+        return factory;
+    }
 }
