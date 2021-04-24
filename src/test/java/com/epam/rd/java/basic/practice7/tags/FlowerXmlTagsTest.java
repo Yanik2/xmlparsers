@@ -11,6 +11,6 @@ public class FlowerXmlTagsTest {
 
     @Test
     public void shouldReturnFlower() {
-        Assert.assertEquals(FlowerXmlTags.FLOWER.getValue(), "flower");
+        Assert.assertEquals("flower",FlowerXmlTags.FLOWER.getValue());
     }
 }
