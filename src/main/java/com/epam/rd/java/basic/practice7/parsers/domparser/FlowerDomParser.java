@@ -27,9 +27,8 @@ public class FlowerDomParser extends AbstractFlowerParser {
 
     public FlowerDomParser() {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        factory.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, "");
-        factory.setAttribute(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
         try {
+            factory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
             documentBuilder = factory.newDocumentBuilder();
         } catch (ParserConfigurationException e) {
             logger.severe(e.getMessage());

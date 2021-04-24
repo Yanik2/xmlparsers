@@ -32,9 +32,6 @@ public class FlowerDomXmlBuilder extends AbstractXmlBuilder {
     @Override
     public void buildXml() {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        factory.setAttribute(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
-        factory.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, "");
-        factory.setAttribute(XMLConstants.FEATURE_SECURE_PROCESSING, "");
         try {
             DocumentBuilder builder = factory.newDocumentBuilder();
             Document doc = builder.newDocument();

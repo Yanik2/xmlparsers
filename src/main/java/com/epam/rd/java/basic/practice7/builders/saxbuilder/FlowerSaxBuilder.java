@@ -9,12 +9,14 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.logging.Logger;
 
 /**This class builds xml file with Sax
  * @author Yan Zinchenko
  * @version 0.1
  */
 public class FlowerSaxBuilder extends AbstractXmlBuilder {
+    private static final Logger LOGGER = Logger.getLogger(FlowerSaxBuilder.class.getName());
     private XMLOutputFactory factory;
 
     public FlowerSaxBuilder(Flowers flowers) {
@@ -81,7 +83,7 @@ public class FlowerSaxBuilder extends AbstractXmlBuilder {
             writer.writeEndDocument();
             writer.flush();
         } catch (XMLStreamException | IOException e) {
-            e.printStackTrace();
+           LOGGER.severe(e.getMessage());
         }
     }
 }
