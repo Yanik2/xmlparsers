@@ -8,4 +8,9 @@ public class FlowerXmlTagsTest {
     public void shouldNotReturnNull() {
         Assert.assertNotNull(FlowerXmlTags.FLOWER.getValue());
     }
+
+    @Test
+    public void shouldReturnFlower() {
+        Assert.assertEquals(FlowerXmlTags.FLOWER.getValue(), "flower");
+    }
 }
