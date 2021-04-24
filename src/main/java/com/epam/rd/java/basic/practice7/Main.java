@@ -8,6 +8,8 @@ import com.epam.rd.java.basic.practice7.item.Flower;
 import com.epam.rd.java.basic.practice7.parsers.domparser.FlowerDomParser;
 import com.epam.rd.java.basic.practice7.parsers.saxparser.FlowerSaxParser;
 import com.epam.rd.java.basic.practice7.parsers.staxparser.FlowerStaxParser;
+import com.epam.rd.java.basic.practice7.validator.XmlValidator;
+
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;

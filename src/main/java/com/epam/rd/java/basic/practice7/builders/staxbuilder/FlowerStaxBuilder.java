@@ -3,7 +3,7 @@ package com.epam.rd.java.basic.practice7.builders.staxbuilder;
 import com.epam.rd.java.basic.practice7.builders.AbstractXmlBuilder;
 import com.epam.rd.java.basic.practice7.container.Flowers;
 import com.epam.rd.java.basic.practice7.item.Flower;
-
+import static com.epam.rd.java.basic.practice7.tags.FlowerXmlTags.*;
 import javax.xml.stream.*;
 import javax.xml.stream.events.*;
 import java.io.FileNotFoundException;
@@ -28,12 +28,12 @@ public class FlowerStaxBuilder extends AbstractXmlBuilder {
             StartDocument doc = eventFactory.createStartDocument("UTF-8", "1.0");
             writer.add(doc);
 
-            StartElement startElement = eventFactory.createStartElement("", "", "flowers");
+            StartElement startElement = eventFactory.createStartElement("", "", FLOWERS.getValue());
             writer.add(startElement);
             for (Flower f : flowers) {
                 makeFlower(f, eventFactory, writer);
             }
-            EndElement endElement = eventFactory.createEndElement("", "", "flowers");
+            EndElement endElement = eventFactory.createEndElement("", "", FLOWERS.getValue());
             writer.add(endElement);
 
             EndDocument endDoc = eventFactory.createEndDocument();
@@ -44,50 +44,27 @@ public class FlowerStaxBuilder extends AbstractXmlBuilder {
     }
 
     private void makeFlower(Flower f, XMLEventFactory factory, XMLEventWriter w) throws XMLStreamException {
-        StartElement flower = factory.createStartElement("", "", "flower");
-        EndElement flowerEnd = factory.createEndElement("", "", "flower");
+        StartElement flower = factory.createStartElement("", "", FLOWER.getValue());
+        EndElement flowerEnd = factory.createEndElement("", "", FLOWER.getValue());
         w.add(flower);
-
-        String value = f.getName();
-        makeNode(factory, w, value, "name");
-        value = f.getSoil();
-        makeNode(factory, w, value, "soil");
-
-        value = f.getOrigin();
-        makeNode(factory, w, value, "origin");
-
-        StartElement vp = factory.createStartElement("", "", "visualParams");
+        makeNode(factory, w, f.getName(), NAME.getValue());
+        makeNode(factory, w, f.getSoil(), SOIL.getValue());
+        makeNode(factory, w, f.getOrigin(), ORIGIN.getValue());
+        StartElement vp = factory.createStartElement("", "", VISUALPARAMS.getValue());
         w.add(vp);
-
-        value = f.getVisualParams().getColorOfStem();
-        makeNode(factory, w, value, "colorOfStem");
-
-        value = f.getVisualParams().getColorOfLeaves();
-        makeNode(factory, w, value, "colorOfLeaves");
-
-        value = Integer.toString(f.getVisualParams().getAverageSize());
-        makeNode(factory, w, value, "averageSize");
-
-        EndElement vpEnd = factory.createEndElement("", "", "visualParams");
+        makeNode(factory, w, f.getVisualParams().getColorOfStem(), COLOROFSTEM.getValue());
+        makeNode(factory, w, f.getVisualParams().getColorOfLeaves(), COLOROFLEAVES.getValue());
+        makeNode(factory, w, Integer.toString(f.getVisualParams().getAverageSize()), AVERAGESIZE.getValue());
+        EndElement vpEnd = factory.createEndElement("", "", VISUALPARAMS.getValue());
         w.add(vpEnd);
-
-        StartElement gt = factory.createStartElement("", "", "growingTips");
+        StartElement gt = factory.createStartElement("", "", GROWINGTIPS.getValue());
         w.add(gt);
-
-        value = Integer.toString(f.getGrowingTips().getTemperature());
-        makeNode(factory, w, value, "temperature");
-
-        value = Boolean.toString(f.getGrowingTips().isLight());
-        makeNode(factory, w, value, "light");
-
-        value = Integer.toString(f.getGrowingTips().getWatering());
-        makeNode(factory, w, value, "watering");
-
-        EndElement gtEnd = factory.createEndElement("", "", "growingTips");
+        makeNode(factory, w, Integer.toString(f.getGrowingTips().getTemperature()), TEMPERATURE.getValue());
+        makeNode(factory, w, Boolean.toString(f.getGrowingTips().isLight()), LIGHT.getValue());
+        makeNode(factory, w, Integer.toString(f.getGrowingTips().getWatering()), WATERING.getValue());
+        EndElement gtEnd = factory.createEndElement("", "", GROWINGTIPS.getValue());
         w.add(gtEnd);
-
-        value = f.getMultiplying();
-        makeNode(factory, w, value, "multiplying");
+        makeNode(factory, w, f.getMultiplying(), MULTIPLYING.getValue());
         w.add(flowerEnd);
     }
 

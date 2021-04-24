@@ -9,7 +9,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
-
+import static com.epam.rd.java.basic.practice7.tags.FlowerXmlTags.*;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -39,7 +39,7 @@ public class FlowerDomParser extends AbstractFlowerParser {
         try {
             Document doc = documentBuilder.parse(filename);
             Element root = doc.getDocumentElement();
-            NodeList nodes = root.getElementsByTagName("flower");
+            NodeList nodes = root.getElementsByTagName(FLOWER.getValue());
             for(int i = 0; i < nodes.getLength(); i++) {
                 Element flowerElement = (Element)nodes.item(i);
                 Flower flower = buildFlower(flowerElement);
@@ -57,30 +57,30 @@ public class FlowerDomParser extends AbstractFlowerParser {
      */
     private Flower buildFlower(Element flowerElement) {
         Flower flower = new Flower();
-        flower.setName(getElementTextContent(flowerElement, "name"));
-        flower.setOrigin(getElementTextContent(flowerElement, "origin"));
-        flower.setSoil(getElementTextContent(flowerElement, "soil"));
-        Element visualParams = (Element)flowerElement.getElementsByTagName("visualParams").item(0);
+        flower.setName(getElementTextContent(flowerElement, NAME.getValue()));
+        flower.setOrigin(getElementTextContent(flowerElement, ORIGIN.getValue()));
+        flower.setSoil(getElementTextContent(flowerElement, SOIL.getValue()));
+        Element visualParams = (Element)flowerElement.getElementsByTagName(VISUALPARAMS.getValue()).item(0);
         flower.setVisualParams(buildVisualParams(visualParams));
-        Element growingTips = (Element)flowerElement.getElementsByTagName("growingTips").item(0);
+        Element growingTips = (Element)flowerElement.getElementsByTagName(GROWINGTIPS.getValue()).item(0);
         flower.setGrowingTips(buildGrowingTips(growingTips));
-        flower.setMultiplying(getElementTextContent(flowerElement, "multiplying"));
+        flower.setMultiplying(getElementTextContent(flowerElement, MULTIPLYING.getValue()));
         return flower;
     }
 
     private VisualParams buildVisualParams(Element el) {
         VisualParams visualParams = new VisualParams();
-        visualParams.setColorOfStem(getElementTextContent(el, "colorOfStem"));
-        visualParams.setColorOfLeaves(getElementTextContent(el, "colorOfLeaves"));
-        visualParams.setAverageSize(Integer.parseInt(getElementTextContent(el, "averageSize")));
+        visualParams.setColorOfStem(getElementTextContent(el, COLOROFSTEM.getValue()));
+        visualParams.setColorOfLeaves(getElementTextContent(el, COLOROFLEAVES.getValue()));
+        visualParams.setAverageSize(Integer.parseInt(getElementTextContent(el, AVERAGESIZE.getValue())));
         return visualParams;
     }
 
     private GrowingTips buildGrowingTips(Element el) {
         GrowingTips tips = new GrowingTips();
-        tips.setLight(Boolean.parseBoolean(getElementTextContent(el, "light")));
-        tips.setTemperature(Integer.parseInt(getElementTextContent(el, "temperature")));
-        tips.setWatering(Integer.parseInt(getElementTextContent(el, "watering")));
+        tips.setLight(Boolean.parseBoolean(getElementTextContent(el, LIGHT.getValue())));
+        tips.setTemperature(Integer.parseInt(getElementTextContent(el, TEMPERATURE.getValue())));
+        tips.setWatering(Integer.parseInt(getElementTextContent(el, WATERING.getValue())));
         return tips;
     }
 

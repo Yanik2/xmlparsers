@@ -3,7 +3,7 @@ package com.epam.rd.java.basic.practice7.builders.saxbuilder;
 import com.epam.rd.java.basic.practice7.builders.AbstractXmlBuilder;
 import com.epam.rd.java.basic.practice7.container.Flowers;
 import com.epam.rd.java.basic.practice7.item.Flower;
-
+import static com.epam.rd.java.basic.practice7.tags.FlowerXmlTags.*;
 import javax.xml.stream.XMLOutputFactory;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
@@ -29,54 +29,23 @@ public class FlowerSaxBuilder extends AbstractXmlBuilder {
         try {
             XMLStreamWriter writer = factory.createXMLStreamWriter(new FileOutputStream("output.sax.xml"));
             writer.writeStartDocument("UTF-8", "1.0");
-            writer.writeStartElement("flowers");
+            writer.writeStartElement(FLOWERS.getValue());
             for(Flower f : flowers) {
-                writer.writeStartElement("flower");
-
-                writer.writeStartElement("name");
-                writer.writeCharacters(f.getName());
+                writer.writeStartElement(FLOWER.getValue());
+                makeNode(writer, f.getName(), NAME.getValue());
+                makeNode(writer, f.getSoil(), SOIL.getValue());
+                makeNode(writer, f.getOrigin(), ORIGIN.getValue());
+                writer.writeStartElement(VISUALPARAMS.getValue());
+                makeNode(writer, f.getVisualParams().getColorOfStem(), COLOROFSTEM.getValue());
+                makeNode(writer, f.getVisualParams().getColorOfLeaves(), COLOROFLEAVES.getValue());
+                makeNode(writer, Integer.toString(f.getVisualParams().getAverageSize()), AVERAGESIZE.getValue());
                 writer.writeEndElement();
-
-                writer.writeStartElement("soil");
-                writer.writeCharacters(f.getSoil());
+                writer.writeStartElement(GROWINGTIPS.getValue());
+                makeNode(writer, Integer.toString(f.getGrowingTips().getTemperature()), TEMPERATURE.getValue());
+                makeNode(writer, Boolean.toString(f.getGrowingTips().isLight()), LIGHT.getValue());
+                makeNode(writer, Integer.toString(f.getGrowingTips().getWatering()), WATERING.getValue());
                 writer.writeEndElement();
-
-                writer.writeStartElement("origin");
-                writer.writeCharacters(f.getOrigin());
-                writer.writeEndElement();
-
-                writer.writeStartElement("visualParams");
-                writer.writeStartElement("colorOfStem");
-                writer.writeCharacters(f.getVisualParams().getColorOfStem());
-                writer.writeEndElement();
-
-                writer.writeStartElement("colorOfLeaves");
-                writer.writeCharacters(f.getVisualParams().getColorOfLeaves());
-                writer.writeEndElement();
-
-                writer.writeStartElement("averageSize");
-                writer.writeCharacters(Integer.toString(f.getVisualParams().getAverageSize()));
-                writer.writeEndElement();
-                writer.writeEndElement();
-
-                writer.writeStartElement("growingTips");
-                writer.writeStartElement("temperature");
-                writer.writeCharacters(Integer.toString(f.getGrowingTips().getTemperature()));
-                writer.writeEndElement();
-
-                writer.writeStartElement("light");
-                writer.writeCharacters(Boolean.toString(f.getGrowingTips().isLight()));
-                writer.writeEndElement();
-
-                writer.writeStartElement("watering");
-                writer.writeCharacters(Integer.toString(f.getGrowingTips().getWatering()));
-                writer.writeEndElement();
-                writer.writeEndElement();
-
-                writer.writeStartElement("multiplying");
-                writer.writeCharacters(f.getMultiplying());
-                writer.writeEndElement();
-
+                makeNode(writer, f.getMultiplying(), MULTIPLYING.getValue());
                 writer.writeEndElement();
             }
             writer.writeEndElement();
@@ -87,6 +56,11 @@ public class FlowerSaxBuilder extends AbstractXmlBuilder {
         }
     }
 
+    private void makeNode(XMLStreamWriter w, String value, String tag) throws XMLStreamException {
+        w.writeStartElement(tag);
+        w.writeCharacters(value);
+        w.writeEndElement();
+    }
     public static Logger getLOGGER() {
         return LOGGER;
     }
