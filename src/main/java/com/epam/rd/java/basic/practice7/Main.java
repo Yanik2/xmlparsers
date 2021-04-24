@@ -2,6 +2,7 @@ package com.epam.rd.java.basic.practice7;
 
 import com.epam.rd.java.basic.practice7.builders.dombuilder.FlowerDomXmlBuilder;
 import com.epam.rd.java.basic.practice7.builders.saxbuilder.FlowerSaxBuilder;
+import com.epam.rd.java.basic.practice7.builders.staxbuilder.FlowerStaxBuilder;
 import com.epam.rd.java.basic.practice7.parsers.domparser.FlowerDomParser;
 import com.epam.rd.java.basic.practice7.parsers.saxparser.FlowerSaxParser;
 import com.epam.rd.java.basic.practice7.parsers.staxparser.FlowerStaxParser;
@@ -24,7 +25,8 @@ public final class Main {
 
         FlowerSaxBuilder b = new FlowerSaxBuilder(p.getFlowers());
         b.buildXml();
-        XmlValidator.isValid("input.xml", "input.xsd");
 
+        FlowerStaxBuilder staxBuilder = new FlowerStaxBuilder(p.getFlowers());
+        staxBuilder.buildXml();
     }
 }

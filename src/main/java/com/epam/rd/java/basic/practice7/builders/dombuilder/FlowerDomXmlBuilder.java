@@ -15,6 +15,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
@@ -95,7 +96,7 @@ public class FlowerDomXmlBuilder extends AbstractXmlBuilder {
         TransformerFactory factory = TransformerFactory.newInstance();
         Transformer tr = factory.newTransformer();
         DOMSource source = new DOMSource(doc);
-        StreamResult result = new StreamResult(new FileWriter("output.dom.xml"));
+        StreamResult result = new StreamResult(new FileOutputStream("output.dom.xml"));
         tr.transform(source, result);
     }
 }
