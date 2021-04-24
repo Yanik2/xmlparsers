@@ -33,6 +33,7 @@ public class FlowerDomXmlBuilder extends AbstractXmlBuilder {
     public void buildXml() {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         try {
+            factory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
             DocumentBuilder builder = factory.newDocumentBuilder();
             Document doc = builder.newDocument();
             Element root = doc.createElement("flowers");

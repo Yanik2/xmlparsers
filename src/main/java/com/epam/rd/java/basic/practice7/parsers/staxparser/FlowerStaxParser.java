@@ -3,7 +3,6 @@ package com.epam.rd.java.basic.practice7.parsers.staxparser;
 import com.epam.rd.java.basic.practice7.item.Flower;
 import com.epam.rd.java.basic.practice7.parsers.AbstractFlowerParser;
 
-import javax.xml.XMLConstants;
 import javax.xml.stream.XMLEventReader;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
@@ -28,8 +27,8 @@ public class FlowerStaxParser extends AbstractFlowerParser {
 
     public FlowerStaxParser() {
         factory = XMLInputFactory.newInstance();
-        factory.setProperty(XMLConstants.ACCESS_EXTERNAL_DTD, "");
-        factory.setProperty(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
+        factory.setProperty(XMLInputFactory.SUPPORT_DTD, false);
+        factory.setProperty("javax.xml.stream.isSupportingExternalEntities", false);
     }
 
     @Override

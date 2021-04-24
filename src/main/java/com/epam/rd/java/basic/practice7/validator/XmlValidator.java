@@ -27,6 +27,7 @@ public class XmlValidator {
         SchemaFactory factory = SchemaFactory.newInstance(language);
         File schemaLocation = new File(schemaName);
         try {
+            factory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
             Schema schema = factory.newSchema(schemaLocation);
            Validator validator = schema.newValidator();
            Source source = new StreamSource(filename);
