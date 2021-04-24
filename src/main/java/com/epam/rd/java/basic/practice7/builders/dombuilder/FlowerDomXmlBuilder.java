@@ -95,7 +95,7 @@ public class FlowerDomXmlBuilder extends AbstractXmlBuilder {
         TransformerFactory factory = TransformerFactory.newInstance();
         Transformer tr = factory.newTransformer();
         DOMSource source = new DOMSource(doc);
-        StreamResult result = new StreamResult(new FileWriter("output.dom.xml"));
+        StreamResult result = new StreamResult(new FileWriter("output.xml"));
         tr.transform(source, result);
     }
 }
