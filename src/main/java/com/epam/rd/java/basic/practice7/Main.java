@@ -16,6 +16,9 @@ import java.util.List;
 public final class Main {
 
     public static void main(final String[] args) {
+        if(args.length == 1) {
+
+        }
         FlowerDomParser domParser = new FlowerDomParser();
         domParser.parseFlowers(args[0]);
 
