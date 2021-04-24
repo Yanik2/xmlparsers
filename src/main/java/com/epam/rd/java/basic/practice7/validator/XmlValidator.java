@@ -19,7 +19,7 @@ import java.util.logging.Logger;
  * @version 0.1
  */
 public class XmlValidator {
-    private static Logger logger = Logger.getLogger(XmlValidator.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(XmlValidator.class.getName());
 
     public static boolean isValid(String filename, String schemaName) {
         String language = XMLConstants.W3C_XML_SCHEMA_NS_URI;
@@ -32,7 +32,7 @@ public class XmlValidator {
            validator.setErrorHandler(new FlowerErrorHandler());
            validator.validate(source);
         } catch(SAXException | IOException e) {
-            logger.severe(e.getMessage());
+            LOGGER.severe(e.getMessage());
             return false;
         }
         return true;
@@ -42,17 +42,17 @@ public class XmlValidator {
     private static class FlowerErrorHandler implements ErrorHandler {
         @Override
         public void warning(SAXParseException e) throws SAXException {
-            logger.warning(getLineColumnNumber(e) + " - " + e.getMessage());
+            LOGGER.warning(getLineColumnNumber(e) + " - " + e.getMessage());
         }
 
         @Override
         public void error(SAXParseException e) throws SAXException {
-            logger.severe(getLineColumnNumber(e) + " - " + e.getMessage());
+            LOGGER.severe(getLineColumnNumber(e) + " - " + e.getMessage());
         }
 
         @Override
         public void fatalError(SAXParseException e) throws SAXException {
-            logger.severe(getLineColumnNumber(e) + " - " + e.getMessage());
+            LOGGER.severe(getLineColumnNumber(e) + " - " + e.getMessage());
         }
 
         private String getLineColumnNumber(SAXParseException e) {

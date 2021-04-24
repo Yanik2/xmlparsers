@@ -8,9 +8,6 @@ import com.epam.rd.java.basic.practice7.item.Flower;
 import com.epam.rd.java.basic.practice7.parsers.domparser.FlowerDomParser;
 import com.epam.rd.java.basic.practice7.parsers.saxparser.FlowerSaxParser;
 import com.epam.rd.java.basic.practice7.parsers.staxparser.FlowerStaxParser;
-import com.epam.rd.java.basic.practice7.validator.XmlValidator;
-
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -18,29 +15,23 @@ import java.util.List;
 public final class Main {
 
     public static void main(final String[] args) {
-//        FlowerDomParser domParser = new FlowerDomParser();
-//        domParser.parseFlowers(args[0]);
-//
-//
-//
-//        FlowerSaxParser saxParser = new FlowerSaxParser();
-//        saxParser.parseFlowers(args[0]);
+        FlowerDomParser domParser = new FlowerDomParser();
+        domParser.parseFlowers(args[0]);
 
-//
-        FlowerStaxParser p = new FlowerStaxParser();
-        p.parseFlowers("input.xml");
+        FlowerSaxParser saxParser = new FlowerSaxParser();
+        saxParser.parseFlowers(args[0]);
 
-//
+        FlowerStaxParser staxParser = new FlowerStaxParser();
+        staxParser.parseFlowers(args[0]);
 
-        Flowers sorted = sort3(p.getFlowers(), (f1, f2) -> f1.getName().compareTo(f2.getName()));
-        System.out.println(sorted);
-        FlowerDomXmlBuilder builder = new FlowerDomXmlBuilder(p.getFlowers());
+        Flowers sorted = sort3(staxParser.getFlowers(), (f1, f2) -> f1.getName().compareTo(f2.getName()));
+        FlowerDomXmlBuilder builder = new FlowerDomXmlBuilder(sorted);
         builder.buildXml();
-//
-        FlowerSaxBuilder b = new FlowerSaxBuilder(p.getFlowers());
+
+        FlowerSaxBuilder b = new FlowerSaxBuilder(sorted);
         b.buildXml();
-////
-        FlowerStaxBuilder staxBuilder = new FlowerStaxBuilder(p.getFlowers());
+
+        FlowerStaxBuilder staxBuilder = new FlowerStaxBuilder(sorted);
         staxBuilder.buildXml();
     }
 

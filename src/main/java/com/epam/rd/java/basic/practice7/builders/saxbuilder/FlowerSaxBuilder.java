@@ -8,9 +8,7 @@ import javax.xml.stream.XMLOutputFactory;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.util.List;
 
 /**This class builds xml file with Sax
  * @author Yan Zinchenko
@@ -38,7 +36,6 @@ public class FlowerSaxBuilder extends AbstractXmlBuilder {
                 writer.writeEndElement();
 
                 writer.writeStartElement("soil");
-//                writer.writeAttribute("typeOfSoil", f.getSoil());
                 writer.writeCharacters(f.getSoil());
                 writer.writeEndElement();
 
@@ -66,7 +63,6 @@ public class FlowerSaxBuilder extends AbstractXmlBuilder {
                 writer.writeEndElement();
 
                 writer.writeStartElement("light");
-//                writer.writeAttribute("condition", Boolean.toString(f.getGrowingTips().isLight()));
                 writer.writeCharacters(Boolean.toString(f.getGrowingTips().isLight()));
                 writer.writeEndElement();
 
@@ -76,7 +72,6 @@ public class FlowerSaxBuilder extends AbstractXmlBuilder {
                 writer.writeEndElement();
 
                 writer.writeStartElement("multiplying");
-//                writer.writeAttribute("method", f.getMultiplying());
                 writer.writeCharacters(f.getMultiplying());
                 writer.writeEndElement();
 
@@ -85,9 +80,7 @@ public class FlowerSaxBuilder extends AbstractXmlBuilder {
             writer.writeEndElement();
             writer.writeEndDocument();
             writer.flush();
-        } catch (XMLStreamException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (XMLStreamException | IOException e) {
             e.printStackTrace();
         }
     }

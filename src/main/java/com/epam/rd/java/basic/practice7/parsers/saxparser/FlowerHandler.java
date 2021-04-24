@@ -6,23 +6,18 @@ import com.epam.rd.java.basic.practice7.tags.FlowerXmlTags;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
-
-import java.util.ArrayList;
 import java.util.EnumSet;
-import java.util.List;
 
 public class FlowerHandler extends DefaultHandler {
     private final Flowers flowers;
     private Flower current;
     private FlowerXmlTags currentTag;
     private final EnumSet<FlowerXmlTags> withText;
-//    private final EnumSet<FlowerXmlTags> withAttr;
     private static final String FLOWER_ELEMENT = "flower";
 
     public FlowerHandler() {
         flowers = new Flowers();
         withText = EnumSet.range(FlowerXmlTags.NAME, FlowerXmlTags.MULTIPLYING);
-//        withAttr = EnumSet.range(FlowerXmlTags.SOIL, FlowerXmlTags.MULTIPLYING);
     }
 
     @Override
@@ -35,8 +30,6 @@ public class FlowerHandler extends DefaultHandler {
         FlowerXmlTags tmp = FlowerXmlTags.valueOf(qName.toUpperCase());
         if (withText.contains(tmp)) {
             currentTag = tmp;
-//            if(withAttr.contains(tmp))
-//                setValueFromAttributes(attributes);
         }
     }
 
@@ -82,23 +75,6 @@ public class FlowerHandler extends DefaultHandler {
         }
         currentTag = null;
     }
-
-//    private void setValueFromAttributes(Attributes attr) {
-//        switch (currentTag) {
-//            case SOIL:
-//                current.setSoil(attr.getValue(0));
-//                break;
-//            case LIGHT:
-//                current.getGrowingTips().setLight(Boolean.parseBoolean(attr.getValue(0)));
-//                break;
-//            case MULTIPLYING:
-//                current.setMultiplying(attr.getValue(0));
-//                break;
-//            default:
-//                throw new EnumConstantNotPresentException(currentTag.getDeclaringClass(), currentTag.name());
-//        }
-//        currentTag = null;
-//    }
 
     @Override
     public void endElement(String uri, String localName, String qName) throws SAXException {

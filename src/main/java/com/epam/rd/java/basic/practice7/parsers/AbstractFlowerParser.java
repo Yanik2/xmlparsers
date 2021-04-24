@@ -1,10 +1,6 @@
 package com.epam.rd.java.basic.practice7.parsers;
 
 import com.epam.rd.java.basic.practice7.container.Flowers;
-import com.epam.rd.java.basic.practice7.item.Flower;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**This class is abstract class for all parsers
  * @author Yan Zinchenko

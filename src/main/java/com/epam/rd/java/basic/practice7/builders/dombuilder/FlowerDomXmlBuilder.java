@@ -10,17 +10,12 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.util.List;
-import java.util.Properties;
 import java.util.logging.Logger;
 
 /**This class is builds xml file using DOM parser
@@ -28,7 +23,7 @@ import java.util.logging.Logger;
  * @version 0.1
  */
 public class FlowerDomXmlBuilder extends AbstractXmlBuilder {
-    private static Logger logger = Logger.getLogger(FlowerDomXmlBuilder.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(FlowerDomXmlBuilder.class.getName());
 
     public FlowerDomXmlBuilder(Flowers flowers) {
         super(flowers);
@@ -46,7 +41,6 @@ public class FlowerDomXmlBuilder extends AbstractXmlBuilder {
                 Element name = doc.createElement("name");
                 name.appendChild(doc.createTextNode(flower.getName()));
                 Element soil = doc.createElement("soil");
-//                soil.setAttribute("typeOfSoil", flower.getSoil());
                 soil.appendChild(doc.createTextNode(flower.getSoil()));
                 Element origin = doc.createElement("origin");
                 origin.setTextContent(flower.getOrigin());
@@ -61,12 +55,10 @@ public class FlowerDomXmlBuilder extends AbstractXmlBuilder {
                 Element temperature = doc.createElement("temperature");
                 temperature.setTextContent(Integer.toString(flower.getGrowingTips().getTemperature()));
                 Element light = doc.createElement("light");
-//                light.setAttribute("condition", Boolean.toString(flower.getGrowingTips().isLight()));
                 light.appendChild(doc.createTextNode(Boolean.toString(flower.getGrowingTips().isLight())));
                 Element watering = doc.createElement("watering");
                 watering.setTextContent(Integer.toString(flower.getGrowingTips().getWatering()));
                 Element multiplying = doc.createElement("multiplying");
-//                multiplying.setAttribute("method", flower.getMultiplying());
                 multiplying.appendChild(doc.createTextNode(flower.getMultiplying()));
 
                 growingTips.appendChild(temperature);
@@ -88,12 +80,9 @@ public class FlowerDomXmlBuilder extends AbstractXmlBuilder {
 
                 write(doc);
             }
-        } catch (ParserConfigurationException | TransformerException e) {
-            logger.severe(e.getMessage());
-        } catch (IOException e) {
-            logger.severe(e.getMessage());
+        } catch (ParserConfigurationException | TransformerException  | IOException e) {
+            LOGGER.severe(e.getMessage());
         }
-
     }
 
     private void write(Document doc) throws TransformerException, IOException {

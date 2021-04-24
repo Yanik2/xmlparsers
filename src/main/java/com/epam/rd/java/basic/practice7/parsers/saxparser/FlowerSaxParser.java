@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 public class FlowerSaxParser extends AbstractFlowerParser {
     private static final Logger logger = Logger.getLogger(FlowerSaxParser.class.getName());
 
-    private FlowerHandler handler;
+    private final FlowerHandler handler;
     private XMLReader reader;
 
     public FlowerSaxParser() {
