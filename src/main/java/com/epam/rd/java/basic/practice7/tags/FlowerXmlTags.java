@@ -10,11 +10,11 @@ public enum FlowerXmlTags {
     AVERAGESIZE("averageSize"),
     TEMPERATURE("temperature"),
     WATERING("watering"),
-    VISUALPARAMS("visualParams"),
-    GROWINGTIPS("growingTips"),
     SOIL("soil"),
     LIGHT("light"),
-    MULTIPLYING("multiplying");
+    MULTIPLYING("multiplying"),
+    VISUALPARAMS("visualParams"),
+    GROWINGTIPS("growingTips");
 
     private String value;
 

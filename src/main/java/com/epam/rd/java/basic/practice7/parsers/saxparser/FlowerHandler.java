@@ -1,5 +1,6 @@
 package com.epam.rd.java.basic.practice7.parsers.saxparser;
 
+import com.epam.rd.java.basic.practice7.container.Flowers;
 import com.epam.rd.java.basic.practice7.item.Flower;
 import com.epam.rd.java.basic.practice7.tags.FlowerXmlTags;
 import org.xml.sax.Attributes;
@@ -11,17 +12,17 @@ import java.util.EnumSet;
 import java.util.List;
 
 public class FlowerHandler extends DefaultHandler {
-    private final List<Flower> flowers;
+    private final Flowers flowers;
     private Flower current;
     private FlowerXmlTags currentTag;
     private final EnumSet<FlowerXmlTags> withText;
-    private final EnumSet<FlowerXmlTags> withAttr;
+//    private final EnumSet<FlowerXmlTags> withAttr;
     private static final String FLOWER_ELEMENT = "flower";
 
     public FlowerHandler() {
-        flowers = new ArrayList<>();
-        withText = EnumSet.range(FlowerXmlTags.NAME, FlowerXmlTags.WATERING);
-        withAttr = EnumSet.range(FlowerXmlTags.SOIL, FlowerXmlTags.MULTIPLYING);
+        flowers = new Flowers();
+        withText = EnumSet.range(FlowerXmlTags.NAME, FlowerXmlTags.MULTIPLYING);
+//        withAttr = EnumSet.range(FlowerXmlTags.SOIL, FlowerXmlTags.MULTIPLYING);
     }
 
     @Override
@@ -32,10 +33,10 @@ public class FlowerHandler extends DefaultHandler {
         }
 
         FlowerXmlTags tmp = FlowerXmlTags.valueOf(qName.toUpperCase());
-        if (withAttr.contains(tmp) || withText.contains(tmp)) {
+        if (withText.contains(tmp)) {
             currentTag = tmp;
-            if(withAttr.contains(tmp))
-                setValueFromAttributes(attributes);
+//            if(withAttr.contains(tmp))
+//                setValueFromAttributes(attributes);
         }
     }
 
@@ -49,6 +50,9 @@ public class FlowerHandler extends DefaultHandler {
                     break;
                 case ORIGIN:
                     current.setOrigin(data);
+                    break;
+                case SOIL:
+                    current.setSoil(data);
                     break;
                 case COLOROFSTEM:
                     current.getVisualParams().setColorOfStem(data);
@@ -65,6 +69,13 @@ public class FlowerHandler extends DefaultHandler {
                 case WATERING:
                     current.getGrowingTips().setWatering(Integer.parseInt(data));
                     break;
+
+                case LIGHT:
+                    current.getGrowingTips().setLight(Boolean.parseBoolean(data));
+                    break;
+                case MULTIPLYING:
+                    current.setMultiplying(data);
+                    break;
                 default:
                     throw new EnumConstantNotPresentException(currentTag.getDeclaringClass(), currentTag.name());
             }
@@ -72,26 +83,22 @@ public class FlowerHandler extends DefaultHandler {
         currentTag = null;
     }
 
-    /**This method is setting values from attributes
-     *
-     * @param attr - soil, light or multiplying attributes
-     */
-    private void setValueFromAttributes(Attributes attr) {
-        switch (currentTag) {
-            case SOIL:
-                current.setSoil(attr.getValue(0));
-                break;
-            case LIGHT:
-                current.getGrowingTips().setLight(Boolean.parseBoolean(attr.getValue(0)));
-                break;
-            case MULTIPLYING:
-                current.setMultiplying(attr.getValue(0));
-                break;
-            default:
-                throw new EnumConstantNotPresentException(currentTag.getDeclaringClass(), currentTag.name());
-        }
-        currentTag = null;
-    }
+//    private void setValueFromAttributes(Attributes attr) {
+//        switch (currentTag) {
+//            case SOIL:
+//                current.setSoil(attr.getValue(0));
+//                break;
+//            case LIGHT:
+//                current.getGrowingTips().setLight(Boolean.parseBoolean(attr.getValue(0)));
+//                break;
+//            case MULTIPLYING:
+//                current.setMultiplying(attr.getValue(0));
+//                break;
+//            default:
+//                throw new EnumConstantNotPresentException(currentTag.getDeclaringClass(), currentTag.name());
+//        }
+//        currentTag = null;
+//    }
 
     @Override
     public void endElement(String uri, String localName, String qName) throws SAXException {
@@ -100,7 +107,7 @@ public class FlowerHandler extends DefaultHandler {
         }
     }
 
-    public List<Flower> getFlowers() {
+    public Flowers getFlowers() {
         return flowers;
     }
 }

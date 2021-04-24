@@ -4,7 +4,7 @@
         ns:schemaLocation="http://flowers.com/flowers input.xsd">
     <flower>
         <name>Rose</name>
-        <soil typeOfSoil="podzolic"></soil>
+        <soil>podzolic</soil>
         <origin>China</origin>
         <visualParams>
             <colorOfStem>Green</colorOfStem>
@@ -13,15 +13,15 @@
         </visualParams>
         <growingTips>
             <temperature>26</temperature>
-            <light condition="true"></light>
+            <light>true</light>
             <watering>1</watering>
         </growingTips>
-        <multiplying method="seed"></multiplying>
+        <multiplying>seed</multiplying>
     </flower>
 
     <flower>
         <name>Tulip</name>
-        <soil typeOfSoil="ground"></soil>
+        <soil>ground</soil>
         <origin>Afganistan</origin>
         <visualParams>
             <colorOfStem>Green</colorOfStem>
@@ -30,15 +30,15 @@
         </visualParams>
         <growingTips>
             <temperature>20</temperature>
-            <light condition="true"></light>
+            <light>true</light>
             <watering>2</watering>
         </growingTips>
-        <multiplying method="leaves"></multiplying>
+        <multiplying>leaves</multiplying>
     </flower>
 
     <flower>
         <name>Magnolia</name>
-        <soil typeOfSoil="sod-podzolic"></soil>
+        <soil>sod-podzolic</soil>
         <origin>Japan</origin>
         <visualParams>
             <colorOfStem>Red</colorOfStem>
@@ -47,15 +47,15 @@
         </visualParams>
         <growingTips>
             <temperature>30</temperature>
-            <light condition="false"></light>
+            <light>false</light>
             <watering>3</watering>
         </growingTips>
-        <multiplying method="stalk"></multiplying>
+        <multiplying>stalk</multiplying>
     </flower>
 
     <flower>
         <name>Violet</name>
-        <soil typeOfSoil="ground"></soil>
+        <soil>ground</soil>
         <origin>Ukraine</origin>
         <visualParams>
             <colorOfStem>Green</colorOfStem>
@@ -64,15 +64,15 @@
         </visualParams>
         <growingTips>
             <temperature>20</temperature>
-            <light condition="false"></light>
+            <light>false</light>
             <watering>6</watering>
         </growingTips>
-        <multiplying method="leaves"></multiplying>
+        <multiplying>leaves</multiplying>
     </flower>
 
     <flower>
         <name>Cactus</name>
-        <soil typeOfSoil="podzolic"></soil>
+        <soil>podzolic</soil>
         <origin>Mexico</origin>
         <visualParams>
             <colorOfStem>Green</colorOfStem>
@@ -81,9 +81,9 @@
         </visualParams>
         <growingTips>
             <temperature>40</temperature>
-            <light condition="false"></light>
+            <light>false</light>
             <watering>0</watering>
         </growingTips>
-        <multiplying method="stalk"></multiplying>
+        <multiplying>stalk</multiplying>
     </flower>
 </flowers>

@@ -16,26 +16,27 @@ import java.util.List;
 public final class Main {
 
     public static void main(final String[] args) {
-        if(args.length == 1) {
-
-        }
         FlowerDomParser domParser = new FlowerDomParser();
         domParser.parseFlowers(args[0]);
+
+
 
         FlowerSaxParser saxParser = new FlowerSaxParser();
         saxParser.parseFlowers(args[0]);
 
+//
         FlowerStaxParser p = new FlowerStaxParser();
         p.parseFlowers(args[0]);
 
-        List<Flower> flowers = p.getFlowers();
-        sort1(flowers, (f1, f2) -> f1.getName().compareTo(f2.getName()));
+//
+//        List<Flower> flowers = p.getFlowers();
+//        sort1(flowers, (f1, f2) -> f1.getName().compareTo(f2.getName()));
         FlowerDomXmlBuilder builder = new FlowerDomXmlBuilder(p.getFlowers());
         builder.buildXml();
-
+//
         FlowerSaxBuilder b = new FlowerSaxBuilder(p.getFlowers());
         b.buildXml();
-
+////
         FlowerStaxBuilder staxBuilder = new FlowerStaxBuilder(p.getFlowers());
         staxBuilder.buildXml();
     }

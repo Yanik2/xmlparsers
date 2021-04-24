@@ -1,6 +1,7 @@
 package com.epam.rd.java.basic.practice7.builders.saxbuilder;
 
 import com.epam.rd.java.basic.practice7.builders.AbstractXmlBuilder;
+import com.epam.rd.java.basic.practice7.container.Flowers;
 import com.epam.rd.java.basic.practice7.item.Flower;
 
 import javax.xml.stream.XMLOutputFactory;
@@ -18,7 +19,7 @@ import java.util.List;
 public class FlowerSaxBuilder extends AbstractXmlBuilder {
     private XMLOutputFactory factory;
 
-    public FlowerSaxBuilder(List<Flower> flowers) {
+    public FlowerSaxBuilder(Flowers flowers) {
         super(flowers);
         factory = XMLOutputFactory.newInstance();
     }
@@ -26,8 +27,8 @@ public class FlowerSaxBuilder extends AbstractXmlBuilder {
     @Override
     public void buildXml() {
         try {
-            XMLStreamWriter writer = factory.createXMLStreamWriter(new FileOutputStream("output.sax.xml"), "cp1251");
-            writer.writeStartDocument("cp1251", "1.0");
+            XMLStreamWriter writer = factory.createXMLStreamWriter(new FileOutputStream("output.sax.xml"));
+            writer.writeStartDocument("UTF-8", "1.0");
             writer.writeStartElement("flowers");
             for(Flower f : flowers) {
                 writer.writeStartElement("flower");
@@ -37,7 +38,8 @@ public class FlowerSaxBuilder extends AbstractXmlBuilder {
                 writer.writeEndElement();
 
                 writer.writeStartElement("soil");
-                writer.writeAttribute("typeOfSoil", f.getSoil());
+//                writer.writeAttribute("typeOfSoil", f.getSoil());
+                writer.writeCharacters(f.getSoil());
                 writer.writeEndElement();
 
                 writer.writeStartElement("origin");
@@ -64,7 +66,8 @@ public class FlowerSaxBuilder extends AbstractXmlBuilder {
                 writer.writeEndElement();
 
                 writer.writeStartElement("light");
-                writer.writeAttribute("condition", Boolean.toString(f.getGrowingTips().isLight()));
+//                writer.writeAttribute("condition", Boolean.toString(f.getGrowingTips().isLight()));
+                writer.writeCharacters(Boolean.toString(f.getGrowingTips().isLight()));
                 writer.writeEndElement();
 
                 writer.writeStartElement("watering");
@@ -73,7 +76,8 @@ public class FlowerSaxBuilder extends AbstractXmlBuilder {
                 writer.writeEndElement();
 
                 writer.writeStartElement("multiplying");
-                writer.writeAttribute("method", f.getMultiplying());
+//                writer.writeAttribute("method", f.getMultiplying());
+                writer.writeCharacters(f.getMultiplying());
                 writer.writeEndElement();
 
                 writer.writeEndElement();

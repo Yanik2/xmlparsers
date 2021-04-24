@@ -58,14 +58,14 @@ public class FlowerDomParser extends AbstractFlowerParser {
         Flower flower = new Flower();
         flower.setName(getElementTextContent(flowerElement, "name"));
         flower.setOrigin(getElementTextContent(flowerElement, "origin"));
-        Element soil = (Element)flowerElement.getElementsByTagName("soil").item(0);
-        flower.setSoil(soil.getAttribute("typeOfSoil"));
+//        Element soil = (Element)flowerElement.getElementsByTagName("soil").item(0);
+        flower.setSoil(getElementTextContent(flowerElement, "soil"));
         Element visualParams = (Element)flowerElement.getElementsByTagName("visualParams").item(0);
         flower.setVisualParams(buildVisualParams(visualParams));
         Element growingTips = (Element)flowerElement.getElementsByTagName("growingTips").item(0);
         flower.setGrowingTips(buildGrowingTips(growingTips));
-        Element multiplying = (Element) flowerElement.getElementsByTagName("multiplying").item(0);
-        flower.setMultiplying(multiplying.getAttribute("method"));
+//        Element multiplying = (Element) flowerElement.getElementsByTagName("multiplying").item(0);
+        flower.setMultiplying(getElementTextContent(flowerElement, "multiplying"));
         return flower;
     }
 
@@ -79,8 +79,8 @@ public class FlowerDomParser extends AbstractFlowerParser {
 
     private GrowingTips buildGrowingTips(Element el) {
         GrowingTips tips = new GrowingTips();
-        Element light = (Element) el.getElementsByTagName("light").item(0);
-        tips.setLight(Boolean.parseBoolean(light.getAttribute("condition")));
+//        Element light = (Element) el.getElementsByTagName("light").item(0);
+        tips.setLight(Boolean.parseBoolean(getElementTextContent(el, "light")));
         tips.setTemperature(Integer.parseInt(getElementTextContent(el, "temperature")));
         tips.setWatering(Integer.parseInt(getElementTextContent(el, "watering")));
         return tips;

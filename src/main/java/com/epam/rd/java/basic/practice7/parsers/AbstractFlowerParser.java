@@ -1,5 +1,6 @@
 package com.epam.rd.java.basic.practice7.parsers;
 
+import com.epam.rd.java.basic.practice7.container.Flowers;
 import com.epam.rd.java.basic.practice7.item.Flower;
 
 import java.util.ArrayList;
@@ -11,13 +12,13 @@ import java.util.List;
  */
 public abstract class AbstractFlowerParser {
 
-    protected List<Flower> flowers;
+    protected Flowers flowers;
 
     protected AbstractFlowerParser() {
-        flowers = new ArrayList<>();
+        flowers = new Flowers();
     }
 
-    public List<Flower> getFlowers() {
+    public Flowers getFlowers() {
         return flowers;
     }
 

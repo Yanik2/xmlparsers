@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ns:schema xmlns:ns="http://www.w3.org/2001/XMLSchema"
-        targetNamespace="http://flowers.com/flowers"
-        elementFormDefault="qualified">
+           targetNamespace="http://flowers.com/flowers"
+           elementFormDefault="qualified">
     <ns:element name="flowers">
         <ns:complexType>
             <ns:sequence>
@@ -10,17 +10,13 @@
                         <ns:sequence>
                             <ns:element name="name" type="ns:string"/>
                             <ns:element name="soil">
-                                <ns:complexType>
-                                    <ns:attribute name="typeOfSoil">
-                                        <ns:simpleType>
-                                            <ns:restriction base="ns:string">
-                                                <ns:enumeration value="podzolic"/>
-                                                <ns:enumeration value="ground"/>
-                                                <ns:enumeration value="sod-podzolic"/>
-                                            </ns:restriction>
-                                        </ns:simpleType>
-                                    </ns:attribute>
-                                </ns:complexType>
+                                <ns:simpleType>
+                                    <ns:restriction base="ns:string">
+                                        <ns:enumeration value="podzolic"/>
+                                        <ns:enumeration value="ground"/>
+                                        <ns:enumeration value="sod-podzolic"/>
+                                    </ns:restriction>
+                                </ns:simpleType>
                             </ns:element>
                             <ns:element name="origin" type="ns:string"/>
                             <ns:element name="visualParams">
@@ -44,33 +40,25 @@
                                             </ns:simpleType>
                                         </ns:element>
                                         <ns:element name="light">
-                                            <ns:complexType>
-                                                <ns:attribute name="condition">
-                                                    <ns:simpleType>
-                                                        <ns:restriction base="ns:string">
-                                                            <ns:enumeration value="true"/>
-                                                            <ns:enumeration value="false"/>
-                                                        </ns:restriction>
-                                                    </ns:simpleType>
-                                                </ns:attribute>
-                                            </ns:complexType>
+                                            <ns:simpleType>
+                                                <ns:restriction base="ns:string">
+                                                    <ns:enumeration value="true"/>
+                                                    <ns:enumeration value="false"/>
+                                                </ns:restriction>
+                                            </ns:simpleType>
                                         </ns:element>
                                         <ns:element name="watering" type="ns:integer" default="0"/>
                                     </ns:sequence>
                                 </ns:complexType>
                             </ns:element>
                             <ns:element name="multiplying">
-                                <ns:complexType>
-                                    <ns:attribute name="method">
-                                        <ns:simpleType>
-                                            <ns:restriction base="ns:string">
-                                                <ns:enumeration value="seed"/>
-                                                <ns:enumeration value="stalk"/>
-                                                <ns:enumeration value="leaves"/>
-                                            </ns:restriction>
-                                        </ns:simpleType>
-                                    </ns:attribute>
-                                </ns:complexType>
+                                <ns:simpleType>
+                                    <ns:restriction base="ns:string">
+                                        <ns:enumeration value="seed"/>
+                                        <ns:enumeration value="stalk"/>
+                                        <ns:enumeration value="leaves"/>
+                                    </ns:restriction>
+                                </ns:simpleType>
                             </ns:element>
                         </ns:sequence>
                     </ns:complexType>

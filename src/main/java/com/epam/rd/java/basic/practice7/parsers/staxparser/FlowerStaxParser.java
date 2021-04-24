@@ -44,8 +44,10 @@ public class FlowerStaxParser extends AbstractFlowerParser {
                     if ("flower".equals(startElement.getName().getLocalPart())) {
                         flower = new Flower();
                     } else if ("multiplying".equals(startElement.getName().getLocalPart())) {
-                        Attribute method = startElement.getAttributeByName(new QName("method"));
-                        flower.setMultiplying(method.getValue());
+//                        Attribute method = startElement.getAttributeByName(new QName("method"));
+//                        flower.setMultiplying(method.getValue());
+                        event = reader.nextEvent();
+                        flower.setMultiplying(event.asCharacters().getData());
                     } else if ("name".equals(startElement.getName().getLocalPart())) {
                         event = reader.nextEvent();
                         flower.setName(event.asCharacters().getData());
@@ -53,8 +55,10 @@ public class FlowerStaxParser extends AbstractFlowerParser {
                         event = reader.nextEvent();
                         flower.setOrigin(event.asCharacters().getData());
                     } else if ("soil".equals(startElement.getName().getLocalPart())) {
-                        Attribute attr = startElement.getAttributeByName(new QName("typeOfSoil"));
-                        flower.setSoil(attr.getValue());
+//                        Attribute attr = startElement.getAttributeByName(new QName("typeOfSoil"));
+//                        flower.setSoil(attr.getValue());
+                        event = reader.nextEvent();
+                        flower.setSoil(event.asCharacters().getData());
                     } else if (startElement.isStartElement()) {
                         StartElement startElement1 = event.asStartElement();
                         buildGrowingTips(startElement1, flower, event);
@@ -91,8 +95,10 @@ public class FlowerStaxParser extends AbstractFlowerParser {
             event = reader.nextEvent();
             flower.getGrowingTips().setTemperature(Integer.parseInt(event.asCharacters().getData()));
         } else if ("light".equals(el.getName().getLocalPart())) {
-            Attribute condition = el.getAttributeByName(new QName("condition"));
-            flower.getGrowingTips().setLight(Boolean.parseBoolean(condition.getValue()));
+//            Attribute condition = el.getAttributeByName(new QName("condition"));
+//            flower.getGrowingTips().setLight(Boolean.parseBoolean(condition.getValue()));
+            event = reader.nextEvent();
+            flower.getGrowingTips().setLight(Boolean.parseBoolean(event.asCharacters().getData()));
         } else if ("watering".equals(el.getName().getLocalPart())) {
             event = reader.nextEvent();
             flower.getGrowingTips().setWatering(Integer.parseInt(event.asCharacters().getData()));

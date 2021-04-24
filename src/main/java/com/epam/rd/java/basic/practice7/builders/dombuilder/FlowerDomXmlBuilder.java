@@ -1,6 +1,7 @@
 package com.epam.rd.java.basic.practice7.builders.dombuilder;
 
 import com.epam.rd.java.basic.practice7.builders.AbstractXmlBuilder;
+import com.epam.rd.java.basic.practice7.container.Flowers;
 import com.epam.rd.java.basic.practice7.item.Flower;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -29,7 +30,7 @@ import java.util.logging.Logger;
 public class FlowerDomXmlBuilder extends AbstractXmlBuilder {
     private static Logger logger = Logger.getLogger(FlowerDomXmlBuilder.class.getName());
 
-    public FlowerDomXmlBuilder(List<Flower> flowers) {
+    public FlowerDomXmlBuilder(Flowers flowers) {
         super(flowers);
     }
     @Override
@@ -45,7 +46,8 @@ public class FlowerDomXmlBuilder extends AbstractXmlBuilder {
                 Element name = doc.createElement("name");
                 name.appendChild(doc.createTextNode(flower.getName()));
                 Element soil = doc.createElement("soil");
-                soil.setAttribute("typeOfSoil", flower.getSoil());
+//                soil.setAttribute("typeOfSoil", flower.getSoil());
+                soil.appendChild(doc.createTextNode(flower.getSoil()));
                 Element origin = doc.createElement("origin");
                 origin.setTextContent(flower.getOrigin());
                 Element visualParams = doc.createElement("visualParams");
@@ -59,11 +61,13 @@ public class FlowerDomXmlBuilder extends AbstractXmlBuilder {
                 Element temperature = doc.createElement("temperature");
                 temperature.setTextContent(Integer.toString(flower.getGrowingTips().getTemperature()));
                 Element light = doc.createElement("light");
-                light.setAttribute("condition", Boolean.toString(flower.getGrowingTips().isLight()));
+//                light.setAttribute("condition", Boolean.toString(flower.getGrowingTips().isLight()));
+                light.appendChild(doc.createTextNode(Boolean.toString(flower.getGrowingTips().isLight())));
                 Element watering = doc.createElement("watering");
                 watering.setTextContent(Integer.toString(flower.getGrowingTips().getWatering()));
                 Element multiplying = doc.createElement("multiplying");
-                multiplying.setAttribute("method", flower.getMultiplying());
+//                multiplying.setAttribute("method", flower.getMultiplying());
+                multiplying.appendChild(doc.createTextNode(flower.getMultiplying()));
 
                 growingTips.appendChild(temperature);
                 growingTips.appendChild(light);
