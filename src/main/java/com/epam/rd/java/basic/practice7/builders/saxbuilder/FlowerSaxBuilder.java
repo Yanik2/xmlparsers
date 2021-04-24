@@ -25,12 +25,9 @@ public class FlowerSaxBuilder extends AbstractXmlBuilder {
     @Override
     public void buildXml() {
         try {
-            XMLStreamWriter writer = factory.createXMLStreamWriter(new FileWriter("output.xml"));
+            XMLStreamWriter writer = factory.createXMLStreamWriter(new FileWriter("output.sax.xml"));
             writer.writeStartDocument("UTF-8", "1.0");
             writer.writeStartElement("flowers");
-            writer.writeNamespace("xsi", "http://www.w3.org/2001/XMLSchema-instance");
-            writer.writeDefaultNamespace("http://flowers.com/flowers");
-            writer.writeAttribute("xsi:schemaLocation", "http://flowers.com/flowers input.xsd");
             for(Flower f : flowers) {
                 writer.writeStartElement("flower");
 

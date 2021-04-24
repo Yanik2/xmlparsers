@@ -1,82 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns="http://www.w3.org/2001/XMLSchema"
-        targetNamespace="http://flowers.com/flowers"
-        xmlns:tns="http://flowers.com/flowers"
-        elementFormDefault="qualified">
-    <element name="flowers">
-        <complexType>
-            <sequence>
-                <element name="flower" type="tns:Flower" maxOccurs="unbounded"/>
-            </sequence>
-        </complexType>
-    </element>
+<ns:schema xmlns:ns="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://flowers.com/flowers"
+            xmlns="http://flowers.com/flowers"
+                elementFormDefault="qualified">
+    <ns:element name="flowers">
+        <ns:complexType>
+            <ns:sequence>
+                <ns:element name="flower" type="Flower" maxOccurs="unbounded"/>
+            </ns:sequence>
+        </ns:complexType>
+    </ns:element>
 
-    <complexType name="Flower">
-        <sequence>
-            <element name="name" type="string"/>
-            <element name="soil" type="tns:Soil"/>
-            <element name="origin" type="string"/>
-            <element name="visualParams" type="tns:VisualParams"/>
-            <element name="growingTips" type="tns:GrowingTips"/>
-            <element name="multiplying" type="tns:Multiplying"/>
-        </sequence>
-    </complexType>
+    <ns:complexType name="Flower">
+        <ns:sequence>
+            <ns:element name="name" type="ns:string"/>
+            <ns:element name="soil" type="Soil"/>
+            <ns:element name="origin" type="ns:string"/>
+            <ns:element name="visualParams" type="VisualParams"/>
+            <ns:element name="growingTips" type="GrowingTips"/>
+            <ns:element name="multiplying" type="Multiplying"/>
+        </ns:sequence>
+    </ns:complexType>
 
-    <complexType name="VisualParams">
-        <sequence>
-            <element name="colorOfStem" type="string"/>
-            <element name="colorOfLeaves" type="string"/>
-            <element name="averageSize" type="positiveInteger"/>
-        </sequence>
-    </complexType>
+    <ns:complexType name="VisualParams">
+        <ns:sequence>
+            <ns:element name="colorOfStem" type="ns:string"/>
+            <ns:element name="colorOfLeaves" type="ns:string"/>
+            <ns:element name="averageSize" type="ns:positiveInteger"/>
+        </ns:sequence>
+    </ns:complexType>
 
-    <complexType name="GrowingTips">
-        <sequence>
-            <element name="temperature" type="tns:Temperature"/>
-            <element name="light" type="tns:Light"/>
-            <element name="watering" type="integer" default="0"/>
-        </sequence>
-    </complexType>
+    <ns:complexType name="GrowingTips">
+        <ns:sequence>
+            <ns:element name="temperature" type="Temperature"/>
+            <ns:element name="light" type="Light"/>
+            <ns:element name="watering" type="ns:integer" default="0"/>
+        </ns:sequence>
+    </ns:complexType>
 
-    <complexType name="Soil">
-        <attribute name="typeOfSoil">
-            <simpleType>
-                <restriction base="string">
-                    <enumeration value="podzolic"/>
-                    <enumeration value="ground"/>
-                    <enumeration value="sod-podzolic"/>
-                </restriction>
-            </simpleType>
-        </attribute>
-    </complexType>
+    <ns:complexType name="Soil">
+        <ns:attribute name="typeOfSoil">
+            <ns:simpleType>
+                <ns:restriction base="ns:string">
+                    <ns:enumeration value="podzolic"/>
+                    <ns:enumeration value="ground"/>
+                    <ns:enumeration value="sod-podzolic"/>
+                </ns:restriction>
+            </ns:simpleType>
+        </ns:attribute>
+    </ns:complexType>
 
-    <complexType name="Multiplying">
-        <attribute name="method">
-            <simpleType>
-                <restriction base="string">
-                    <enumeration value="seed"/>
-                    <enumeration value="stalk"/>
-                    <enumeration value="leaves"/>
-                </restriction>
-            </simpleType>
-        </attribute>
-    </complexType>
+    <ns:complexType name="Multiplying">
+        <ns:attribute name="method">
+            <ns:simpleType>
+                <ns:restriction base="ns:string">
+                    <ns:enumeration value="seed"/>
+                    <ns:enumeration value="stalk"/>
+                    <ns:enumeration value="leaves"/>
+                </ns:restriction>
+            </ns:simpleType>
+        </ns:attribute>
+    </ns:complexType>
 
-    <complexType name="Light">
-        <attribute name="condition">
-            <simpleType>
-                <restriction base="string">
-                    <enumeration value="true"/>
-                    <enumeration value="false"/>
-                </restriction>
-            </simpleType>
-        </attribute>
-    </complexType>
+    <ns:complexType name="Light">
+        <ns:attribute name="condition">
+            <ns:simpleType>
+                <ns:restriction base="ns:string">
+                    <ns:enumeration value="true"/>
+                    <ns:enumeration value="false"/>
+                </ns:restriction>
+            </ns:simpleType>
+        </ns:attribute>
+    </ns:complexType>
 
-    <simpleType name="Temperature">
-        <restriction base="integer">
-            <maxInclusive value="50"/>
-            <minExclusive value="0"/>
-        </restriction>
-    </simpleType>
-</schema>
+    <ns:simpleType name="Temperature">
+        <ns:restriction base="ns:integer">
+            <ns:maxInclusive value="50"/>
+            <ns:minExclusive value="0"/>
+        </ns:restriction>
+    </ns:simpleType>
+</ns:schema>

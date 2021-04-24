@@ -38,9 +38,6 @@ public class FlowerDomXmlBuilder extends AbstractXmlBuilder {
             DocumentBuilder builder = factory.newDocumentBuilder();
             Document doc = builder.newDocument();
             Element root = doc.createElement("flowers");
-            root.setAttribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance");
-            root.setAttribute("xmlns", "http://flowers.com/flowers");
-            root.setAttribute("xsi:schemaLocation", "http://flowers.com/flowers input.xsd");
             doc.appendChild(root);
             for(Flower flower : flowers) {
                 Element item = doc.createElement("flower");
@@ -98,7 +95,7 @@ public class FlowerDomXmlBuilder extends AbstractXmlBuilder {
         TransformerFactory factory = TransformerFactory.newInstance();
         Transformer tr = factory.newTransformer();
         DOMSource source = new DOMSource(doc);
-        StreamResult result = new StreamResult(new FileWriter("output.xml"));
+        StreamResult result = new StreamResult(new FileWriter("output.dom.xml"));
         tr.transform(source, result);
     }
 }

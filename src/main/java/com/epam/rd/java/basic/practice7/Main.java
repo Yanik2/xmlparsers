@@ -24,6 +24,6 @@ public final class Main {
 //        XmlValidator.isValid("output.xml", "input.xsd");
         FlowerSaxBuilder b = new FlowerSaxBuilder(p.getFlowers());
         b.buildXml();
-        XmlValidator.isValid("output.xml", "input.xsd");
+        XmlValidator.isValid("input.xml", "input.xsd");
     }
 }
